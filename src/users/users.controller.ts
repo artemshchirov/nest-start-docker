@@ -4,6 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
 import { User } from './users.model';
 
+
 @ApiTags('Users')
 @Controller('users')
 export class UsersController {

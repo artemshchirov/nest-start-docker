@@ -11,7 +11,7 @@ async function start() {
     .setTitle('Advanced backend lesson')
     .setDescription('REST API docs')
     .setVersion('1.0.0')
-    .addTag('Artem Shchirov')
+    .addTag(`localhost:${PORT}/api/docs#`)
     .build()
 
   const document = SwaggerModule.createDocument(app, config);

@@ -3,6 +3,7 @@ import { BelongsToMany, Column, DataType, Model, Table } from "sequelize-typescr
 import { Role } from "src/roles/roles.model";
 import { UserRoles } from "src/roles/user-roles.model";
 
+
 interface UserCreationAttrs {
   email: string;
   password: string;
@@ -10,6 +11,7 @@ interface UserCreationAttrs {
 
 @Table({ tableName: 'users' })
 export class User extends Model<User, UserCreationAttrs> {
+
   @ApiProperty({ example: '1', description: 'Unique id' })
   @Column({ type: DataType.INTEGER, unique: true, autoIncrement: true, primaryKey: true })
   id: number;
