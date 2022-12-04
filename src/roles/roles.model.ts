@@ -25,6 +25,6 @@ export class Role extends Model<Role, RoleCreationAttrs> {
   description: string;
 
   // User - linked entity, UserRoles - table for linking entities
-  @BelongsToMany(() => User, () => UserRoles) 
+  @BelongsToMany(() => User, () => UserRoles)
   users: User[];
 }
