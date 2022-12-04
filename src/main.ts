@@ -3,6 +3,7 @@ import { DocumentBuilder } from "@nestjs/swagger";
 import { SwaggerModule } from "@nestjs/swagger/dist";
 import { AppModule } from "./app.module";
 import { JwtAuthGuard } from "./auth/jwt-auth.guard";
+import { ValidationPipe } from "./pipes/validation.pipe";
 
 
 async function start() {
@@ -19,9 +20,10 @@ async function start() {
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/api/docs', app, document)
 
-  // TODO reflector best practice: https://docs.nestjs.com/security/authentication#enable-authentication-globally
-  // app.useGlobalGuards(new JwtAuthGuard(app.get(Reflector)))  // NOTE: protect all routes with auth
+  // TODO: reflector best practice https://docs.nestjs.com/security/authentication#enable-authentication-globally
+  // app.useGlobalGuards(new JwtAuthGuard(app.get(Reflector)))  // DESC: protect all routes with auth
 
+  app.useGlobalPipes(new ValidationPipe())
   await app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
 }
 
