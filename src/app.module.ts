@@ -18,18 +18,18 @@ import * as path from 'path';
   providers: [],
   imports: [
     ConfigModule.forRoot({
-      envFilePath: `.${process.env.NODE_ENV}.env`,
+      envFilePath: `.env.${process.env.NODE_ENV}`,
     }),
     ServeStaticModule.forRoot({
       rootPath: path.resolve(__dirname, 'static'),
     }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
-      host: process.env.POSTGRES_HOST,
-      port: Number(process.env.POSTGRES_PORT),
-      username: process.env.POSTGRES_USER,
-      password: process.env.POSTGRES_PASSWORD,
-      database: process.env.POSTGRES_DB,
+      host: process.env.VITE_POSTGRES_HOST,
+      port: Number(process.env.VITE_POSTGRES_PORT),
+      username: process.env.VITE_POSTGRES_USER,
+      password: process.env.VITE_POSTGRES_PASSWORD,
+      database: process.env.VITE_POSTGRES_DB,
       models: [User, Role, UserRoles, Post],
       autoLoadModels: true,
     }),

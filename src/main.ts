@@ -1,11 +1,11 @@
-import { NestFactory, Reflector } from '@nestjs/core';
+import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder } from '@nestjs/swagger';
 import { SwaggerModule } from '@nestjs/swagger/dist';
 import { AppModule } from './app.module';
 import { ValidationPipe } from './pipes/validation.pipe';
 
 async function start() {
-  const PORT = process.env.PORT || 5000;
+  const PORT = process.env.VITE_PORT || 5000;
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
@@ -13,7 +13,7 @@ async function start() {
     .setDescription('REST API docs')
     .setVersion('1.0.0')
     .addTag(`localhost:${PORT}/api/docs#`)
-    .build();
+    .build(); 
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('/api/docs', app, document);

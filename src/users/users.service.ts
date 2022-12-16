@@ -11,12 +11,18 @@ export class UsersService {
   constructor(
     @InjectModel(User) private userRepository: typeof User,
     private roleService: RolesService,
-  ) {}
+  ) { }
 
   async createUser(dto: CreateUserDto) {
     const user = await this.userRepository.create(dto);
     const role = await this.roleService.getRoleByValue('ADMIN');
-    await user.$set('roles', [role.id]);
+
+    if (role) await user.$set('roles', [role.id]);
+    else throw new HttpException(
+      'role: "ADMIN" doesnt exist',
+      HttpStatus.BAD_REQUEST,
+    );
+
     user.roles = [role];
     return user;
   }
